@@ -1,6 +1,7 @@
 package entidades;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Categoria {
@@ -29,14 +30,10 @@ public class Categoria {
     }
 
     public List<Produto> getProdutos() {
-        return produtos;
+        return Collections.unmodifiableList(produtos);
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
-    }
-
-    public void addProduto(Produto produto) {
+    public void adicionarProduto(Produto produto) {
         if (produto != null && !produtos.contains(produto)) {
             produtos.add(produto);
         }
@@ -45,37 +42,6 @@ public class Categoria {
     @Override
     public String toString() {
         return "Categoria [id=" + id + ", nome=" + nome + "]";
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-        result = prime * result + ((produtos == null) ? 0 : produtos.hashCode());
-        return result;
-
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (this == null || (getClass() != obj.getClass())) {
-            return false;
-        }
-        Categoria other = (Categoria) obj;
-        if (id == null) {
-            if (other.id != null) {
-                return false;
-            }
-        } else if (!produtos.equals(other.produtos)) {
-            return false;
-        }
-
-        return false;
     }
 
 }
